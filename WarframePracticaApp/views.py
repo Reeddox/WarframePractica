@@ -18,7 +18,9 @@ def AgregarWarframe(request):
         form = WarframeForm(request.POST)
         if form.is_valid():
             form.save()
-        return Home(request)
+            return redirect("/WarframeListado/")
+    else:
+        form = WarframeForm()
     data = {'form' : form}
     return render(request, 'Formulario.html', data)
 
@@ -34,6 +36,9 @@ def ModificarDatos(request, id):
         form = WarframeForm(request.POST, instance = listado)
         if form.is_valid():
             form.save()
-        return Home(request)
+            return redirect("/WarframeListado/")
+    else:
+        form = WarframeForm(instance = listado)
+        
     data = {'form' : form}
     return render(request, 'Formulario.html', data)
