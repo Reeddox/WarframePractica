@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LISTADO</title>
+</head>
+<body>
+    <div>LISTADO DE WARFRAMES</div>
+
+    {% if listado %}
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Critical Utility</th>
+                <th>Critical DMG</th>
+                <th>Status Utility</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for listado in listado %}
+            <tr>
+                <td>{{ listado.WarframeNombre }}</td>
+                <td>{{ listado.CriticalUtility }}</td>
+                <td>{{ listado.CriticalDMG }}</td>
+                <td>{{ listado.StatusUtility }}</td>
+                <td><a href="/ModificarDatos/{{ listado.id }}">Actualizar</a></td>
+                <td><a href="/EliminarWarframe/{{ listado.id }}">Eliminar</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+    <div>
+        <strong>No se encontraron datos</strong>
+    </div>
+
+
+    {% endif %}
+
+    <a href="/">INICIO</a>
+    <a href="/AgregarWarframe">AGREGAR</a>
+
+</body>
+</html>
